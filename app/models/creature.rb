@@ -13,6 +13,16 @@ class Creature < ApplicationRecord
             'Bard' => '🎶',
             'Monk' => '🙏' }
 
+  COLORS = { 'Necromancer' => 'black',
+            'Warrior' => '#B74742',
+            'Beastmaster' => '#2A9250',
+            'Ninja' => '#353F68',
+            'Mage' => '#497BBE',
+            'Cleric' => '#F35184',
+            'Ranger' => '#81C451',
+            'Bard' => '#8E57A2',
+            'Monk' => '#F98C3C' }
+
   validates :name, uniqueness: true, presence: true
   validates :hero_class, inclusion: { in: CLASSES }
 
@@ -41,6 +51,14 @@ class Creature < ApplicationRecord
   def class_img
     case hero_class
     when hero_class then "/assets/#{hero_class.downcase}-icon.png"
+    else
+      ''
+    end
+  end
+
+  def color
+    case hero_class
+    when hero_class then COLORS[hero_class]
     else
       ''
     end

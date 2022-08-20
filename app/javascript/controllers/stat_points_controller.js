@@ -65,7 +65,12 @@ export default class extends Controller {
 
   submitBtn() {
     let rPoints = parseInt(this.remainTarget.innerHTML);
-    rPoints === 0 ? document.querySelector('form').submit() : alert(`You still have ${rPoints} points remaining.`);
+    if (rPoints === 0) {
+      document.querySelector('form').submit()
+    } else {
+      alert(`You still have ${rPoints} points remaining.`);
+      this.remainTarget.setAttribute('style','color: #ab4e4f')
+    }
   };
 }
 

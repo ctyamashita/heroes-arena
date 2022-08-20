@@ -1,8 +1,8 @@
 <div class='heroes-banner'>
   <img src="/assets/banner.png" alt="banner" >
 </div>
-<h1 class="text-center mb-5">List of heroes</h1>
-<div class="d-flex justify-content-center flex-wrap">
+<h1 class="text-center py-2 title-index fw-bold">Guild</h1>
+<div class="d-flex justify-content-center flex-wrap bg-index">
   <div class="paper-card col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-1 justify-content-center p-3">
     <%= link_to new_creature_path, class: 'stat-btn-lg mb-3 w-100' do %>
       <span class='emoji'>➕</span> New hero
@@ -29,7 +29,7 @@
 
       <div class="d-flex justify-content-between">
         <%= link_to "🔍", creature_path(creature), class: 'stat-btn emoji mb-3' %>
-        <%= link_to "🗑️", creature_path(creature), method: :delete, class: 'stat-btn emoji mb-3' %>
+        <%= link_to "🗑️", creature_path(creature), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to send #{creature.name} home?"}, class: 'stat-btn emoji mb-3' %>
       </div>
     </div>
   <% end %>

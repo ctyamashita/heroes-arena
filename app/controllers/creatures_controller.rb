@@ -26,7 +26,7 @@ class CreaturesController < ApplicationController
     if @creature.save
       redirect_to creature_path(@creature)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
