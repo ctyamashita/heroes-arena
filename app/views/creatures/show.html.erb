@@ -1,26 +1,26 @@
 <div class="bg-show">
   <div class="container col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 h-100 d-flex justify-content-between flex-column">
     <div class="py-3 mb-3 show-title">
-      <div class="d-flex align-items-center px-3 py-2" style="background-color: <%= @creature.color %>">
-        <img src="<%= @creature.class_img %>" alt="" class="icon-class-lg me-3">
-        <h1 class='m-0'><strong><%= @creature.name %></strong></h1>
+      <div class="d-flex align-items-center px-3 py-2" style="background-color: <%= @player.color %>">
+        <img src="<%= @player.class_img %>" alt="" class="icon-class-lg me-3">
+        <h1 class='m-0'><strong><%= @player.name %></strong></h1>
       </div>
-      <p class='px-4 py-2 text-end m-0'><small><%= @creature.hero_class %>  - Lvl. <%= @creature.lvl %></small></p>
+      <p class='px-4 py-2 text-end m-0'><small><%= @player.hero_class %>  - Lvl. <%= @player.lvl %></small></p>
       <hr class='mt-1 mb-2'>
-      <p class='m-0 px-3'>HP: <%= @creature.hp %>/<%= @creature.max_hp %></p>
+      <p class='m-0 px-3'>HP: <%= @player.hp %>/<%= @player.max_hp %></p>
       <div class='w-100 px-3'>
         <span class="emoji"><%= @hp.slice(0..4) %></span>
-        <% (@creature.max_hp/5).times do |i|%>
+        <% (@player.max_hp/5).times do |i|%>
           <% i = i * 5 %>
           <span class="emoji"><%= @hp.slice(i-4..i) %></span>
         <% end %>
       </div>
 
       <hr class='mt-1 mb-2'>
-      <p class='m-0 px-3'>exp: <%= @creature.exp %>/100</p>
+      <p class='m-0 px-3'>exp: <%= @player.exp %>/100</p>
       <span class="emoji px-3"><%= @exp %></span>
     </div>
-    <div style="background: url('<%= @creature.default_image %>'); height: 500px; background-size: contain; background-repeat: no-repeat; background-position: right">
+    <div style="background: url('<%= @player.default_image %>'); height: 500px; background-size: contain; background-repeat: no-repeat; background-position: right">
       <div class="d-flex justify-content-start stats-display-container">
         <div class="stats-display m-0">
           <p class='m-0 px-2 py-1'>Stats</p>
@@ -34,12 +34,12 @@
 
         <div class="text-center stats-display m-0">
           <p class='m-0 px-2 py-1'>_</p>
-          <p class='m-0 px-2 py-1'><%= @creature.atk %></p>
-          <p class='m-0 px-2 py-1'><%= @creature.def %></p>
-          <p class='m-0 px-2 py-1'><%= @creature.spd %></p>
-          <p class='m-0 px-2 py-1'><%= @creature.dex %></p>
-          <p class='m-0 px-2 py-1'><%= @creature.int %></p>
-          <p class='m-0 px-2 py-1'><%= @creature.luk %></p>
+          <p class='m-0 px-2 py-1'><%= @player.atk %></p>
+          <p class='m-0 px-2 py-1'><%= @player.def %></p>
+          <p class='m-0 px-2 py-1'><%= @player.spd %></p>
+          <p class='m-0 px-2 py-1'><%= @player.dex %></p>
+          <p class='m-0 px-2 py-1'><%= @player.int %></p>
+          <p class='m-0 px-2 py-1'><%= @player.luk %></p>
         </div>
       </div>
     </div>
@@ -48,5 +48,10 @@
         < back
       </div>
     <% end %>
+    <%= form_for [@player, @battle] do |f| %>
+      <%= f.submit %>
+    <% end %>
+
+    <%= link_to 'battle', creature_battles_path(@player, @battle) %>
   </div>
 </div>
