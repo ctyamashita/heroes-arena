@@ -1,0 +1,33 @@
+.circle-container {
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(140, 131, 119);
+  display: flex;
+  justify-content: center;
+}
+
+.bg-circle {
+  z-index: -1;
+  position: absolute;
+  object-position: center;
+  background-image: url('/assets/circle-classes.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba($color: #d7d2cb, $alpha: .3);
+  border-radius: 2000px;
+  height: 100%;
+  width: 100vh;
+  box-shadow: 0 0 200px rgba($color: white, $alpha: .5);
+  animation: rotation 180s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+      transform: rotate(0deg) scale(.8);
+  }
+  to {
+      transform: rotate(360deg) scale(.8);
+  }
+}
