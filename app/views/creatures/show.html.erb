@@ -1,0 +1,47 @@
+<div class="container col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4">
+  <div class="pt-3 pb-3 mb-3 show-title">
+    <h1 class='px-4'><span class="emoji"><%= @creature.icon %> </span><strong><%= @creature.name %></strong></h1>
+    <p class='px-4 text-end'><small><%= @creature.hero_class %>  - Lvl. <%= @creature.lvl %></small></p>
+    <hr>
+    <p class='m-0 px-3'>HP: <%= @creature.hp %>/<%= @creature.max_hp %></p>
+    <div class='w-100 px-3'>
+      <span class="emoji"><%= @hp.slice(0..4) %></span>
+      <% (@creature.max_hp/5).times do |i|%>
+        <% i = i * 5 %>
+        <span class="emoji"><%= @hp.slice(i-4..i) %></span>
+      <% end %>
+    </div>
+
+    <hr>
+    <p class='m-0 px-3'>exp: <%= @creature.exp %>/100</p>
+    <span class="emoji px-3"><%= @exp %></span>
+  </div>
+  <div class="p-3" style="background: url('<%= @creature.default_image %>'); height: 500px; background-size: contain; background-repeat: no-repeat; background-position: center">
+    <div class="d-flex justify-content-start stats-display-container">
+      <div class="stats-display m-0">
+        <p class='m-0'>Stats</p>
+        <p class='m-0'><span class="emoji">🗡️</span> ATK</p>
+        <p class='m-0'><span class="emoji">🛡️</span> DEF</p>
+        <p class='m-0'><span class="emoji">🏃</span> SPD</p>
+        <p class='m-0'><span class="emoji">🎯</span> DEX</p>
+        <p class='m-0'><span class="emoji">🧘</span> INT</p>
+        <p class='m-0'><span class="emoji">🎲</span> LUK</p>
+      </div>
+
+      <div class="text-center stats-display m-0">
+        <p class='m-0'>_</p>
+        <p class='m-0'><%= @creature.atk %></p>
+        <p class='m-0'><%= @creature.def %></p>
+        <p class='m-0'><%= @creature.spd %></p>
+        <p class='m-0'><%= @creature.dex %></p>
+        <p class='m-0'><%= @creature.int %></p>
+        <p class='m-0'><%= @creature.luk %></p>
+      </div>
+    </div>
+  </div>
+  <%= link_to creatures_path do %>
+    <div class='stat-btn-lg mb-3 w-50'>
+      < back
+    </div>
+  <% end %>
+</div>

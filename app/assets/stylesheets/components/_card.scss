@@ -1,0 +1,60 @@
+.stats-display {
+  background-color: rgb(231, 210, 185);
+  color: #404040;
+  border-radius: 8px 0 0 8px;
+  padding: 4px;
+
+  p {
+    padding: 4px 8px;
+  }
+
+  &:last-child {
+    background-color: white;
+    border-radius: 0 8px 8px 0;
+    p {
+      color: black;
+    }
+  }
+
+  span {
+    width: 30px;
+    text-align: center;
+  }
+}
+
+.stats-container {
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba($color: #000000, $alpha: .3);
+}
+
+.show-title {
+  background-color: #404040;
+  color: white;
+  border-radius: 0 0 8px 8px;
+}
+
+.stat-row {
+  padding: 4px 8px;
+}
+
+.pill-card {
+  color: white;
+  background-color: rgb(102, 95, 86);
+  border-radius: 50px;
+  transition: .1s;
+  padding: 0 10px;
+}
+
+.paper-card {
+  min-height: 130px;
+  background-color: rgb(231, 210, 185);
+  border: 2px solid rgb(140, 131, 119);
+  border-radius: 6px;
+  transition: .2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 0 rgb(140, 131, 119);
+    transition: .3s;
+  }
+}

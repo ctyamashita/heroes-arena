@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center vh-100 align-items-center" data-controller='stat-points'>
+  <%= simple_form_for(@creature, data: {stat_points_target: 'form'}) do |f| %>
+      <%= f.input :name, placeholder: 'Hero name', label: false %>
+      <%= f.input :hero_class, collection: Creature::CLASSES.sort, as: :select, label: false, default: true %>
+
+      <div class="d-flex justify-content-center my-4 stats-container">
+        <div class="m-0 text-center pb-2 stats-display">
+          <p class='m-0 border-bottom mb-2'><small>Points to spend:</small></p>
+          <p class='m-0'><span class="emoji">🗡️</span> ATK</p>
+          <p class='m-0'><span class="emoji">🛡️</span> DEF</p>
+          <p class='m-0'><span class="emoji">🏃</span> SPD</p>
+          <p class='m-0'><span class="emoji">🎯</span> DEX</p>
+          <p class='m-0'><span class="emoji">🧘</span> INT</p>
+          <p class='m-0'><span class="emoji">🎲</span> LUK</p>
+        </div>
+
+        <div class="text-center m-0 stats-display">
+          <p class='m-0 r-points border-bottom mb-2' data-stat-points-target='remain'>24</p>
+          <div class='d-flex stat-row'>
+            <div class='stat-btn' data-action="click->stat-points#plusHandler" data-stat-points-target="btnPlus">+</div>
+            <span class='text-black' id='atk'>1</span>
+            <div class='stat-btn disabled' data-action="click->stat-points#minusHandler" data-stat-points-target="btnMinus">-</div>
+          </div>
+          <div class='d-flex stat-row'>
+            <div class='stat-btn' data-action="click->stat-points#plusHandler" data-stat-points-target="btnPlus">+</div>
+            <span class='text-black' id='def'>1</span>
+            <div class='stat-btn disabled' data-action="click->stat-points#minusHandler" data-stat-points-target="btnMinus">-</div>
+          </div>
+          <div class='d-flex stat-row'>
+            <div class='stat-btn' data-action="click->stat-points#plusHandler" data-stat-points-target="btnPlus">+</div>
+            <span class='text-black' id='spd'>1</span>
+            <div class='stat-btn disabled' data-action="click->stat-points#minusHandler" data-stat-points-target="btnMinus">-</div>
+          </div>
+          <div class='d-flex stat-row'>
+            <div class='stat-btn' data-action="click->stat-points#plusHandler" data-stat-points-target="btnPlus">+</div>
+            <span class='text-black' id='dex'>1</span>
+            <div class='stat-btn disabled' data-action="click->stat-points#minusHandler" data-stat-points-target="btnMinus">-</div>
+          </div>
+          <div class='d-flex stat-row'>
+            <div class='stat-btn' data-action="click->stat-points#plusHandler" data-stat-points-target="btnPlus">+</div>
+            <span class='text-black' id='int'>1</span>
+            <div class='stat-btn disabled' data-action="click->stat-points#minusHandler" data-stat-points-target="btnMinus">-</div>
+          </div>
+          <div class='d-flex stat-row'>
+            <div class='stat-btn' data-action="click->stat-points#plusHandler" data-stat-points-target="btnPlus">+</div>
+            <span class='text-black' id='luk'>1</span>
+            <div class='stat-btn disabled' data-action="click->stat-points#minusHandler" data-stat-points-target="btnMinus">-</div>
+          </div>
+        </div>
+      </div>
+      <%= f.input :atk, as: :hidden, :input_html => { value: 1 } %>
+      <%= f.input :def, as: :hidden, :input_html => { value: 1 } %>
+      <%= f.input :spd, as: :hidden, :input_html => { value: 1 } %>
+      <%= f.input :dex, as: :hidden, :input_html => { value: 1 } %>
+      <%= f.input :int, as: :hidden, :input_html => { value: 1 } %>
+      <%= f.input :luk, as: :hidden, :input_html => { value: 1 } %>
+      <div class='d-flex justify-content-center'>
+        <div class="w-50 stat-btn-lg" id="submitBtn" data-action="click->stat-points#submitBtn"><small>Summon</small></div>
+      </div>
+  <% end %>
+</div>

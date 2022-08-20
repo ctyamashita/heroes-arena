@@ -10,8 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_20_061647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "creatures", force: :cascade do |t|
+    t.string "name"
+    t.boolean "dead", default: false
+    t.integer "lvl", default: 1
+    t.integer "max_hp"
+    t.integer "hp"
+    t.integer "atk"
+    t.integer "def"
+    t.integer "spd"
+    t.integer "dex"
+    t.integer "int"
+    t.integer "luk"
+    t.integer "exp", default: 0
+    t.string "hero_class"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.bigint "creature_id", null: false
+    t.bigint "item_id", null: false
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creature_id"], name: "index_equipment_on_creature_id"
+    t.index ["item_id"], name: "index_equipment_on_item_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "hp"
+    t.integer "atk"
+    t.integer "def"
+    t.integer "spd"
+    t.integer "dex"
+    t.integer "int"
+    t.integer "luk"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "equipment", "creatures"
+  add_foreign_key "equipment", "items"
 end
