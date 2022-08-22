@@ -25,6 +25,12 @@ class Creature < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
   validates :hero_class, inclusion: { in: CLASSES }
+  validate :attr_total_points
+
+  def attr_total_points
+    points_added = self.atk + self.def + self.spd + self.dex + self.int + self.luk
+    errors.add(:atk, "You need to spend all your points.") if points_added != 30
+  end
 
   def set_hp
     self.hp = (self.def / 3) * 5

@@ -15,7 +15,6 @@ class CreaturesController < ApplicationController
     @hp = hp_display
     @exp = exp_display
     @battle = Battle.new
-    @creature = Creature.new
   end
 
   def new
@@ -38,19 +37,6 @@ class CreaturesController < ApplicationController
     redirect_to creatures_path
   end
 
-  def edit
-    @player = Creature.find(params[:creature_id])
-    @enemy = Creature.find(params[:id])
-    @battle = Battle.find(params[:battle_id])
-  end
-
-  def update
-    @player = Creature.find(params[:creature_id])
-    @enemy = Creature.find(params[:id])
-    @battle = Battle.find(params[:battle_id])
-    raise
-  end
-
   private
 
   def creature_params
@@ -59,8 +45,8 @@ class CreaturesController < ApplicationController
 
   def hp_display
     hp_lost = @player.max_hp - @player.hp
-    @hp = (('♥️' * @player.hp) + ('🤍' * hp_lost)).chars
-    @hp.values_at(* @hp.each_index.select(&:even?)).join
+    @hp = ('♥️' * @player.hp).chars
+    @hp = @hp.values_at(* @hp.each_index.select(&:even?)).join + ('🤍' * hp_lost)
   end
 
   def exp_display

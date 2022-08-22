@@ -1,0 +1,17 @@
+<%= @player.name %>
+<%= @player.hp %>
+<%= @enemy.name %>
+<%= @enemy.hp %>
+
+
+<%= simple_form_for @battle do |f| %>
+    <div>
+      <label for="player[hp]">Player</label>
+      <input type="number" name="player[hp]">
+    </div>
+    <div>
+      <label for="enemy[hp]">Enemy</label>
+      <input type="number" name="enemy[hp]">
+    </div>
+    <%= f.submit %>
+<% end %>

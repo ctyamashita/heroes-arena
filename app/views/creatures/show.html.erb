@@ -9,11 +9,7 @@
       <hr class='mt-1 mb-2'>
       <p class='m-0 px-3'>HP: <%= @player.hp %>/<%= @player.max_hp %></p>
       <div class='w-100 px-3'>
-        <span class="emoji"><%= @hp.slice(0..4) %></span>
-        <% (@player.max_hp/5).times do |i|%>
-          <% i = i * 5 %>
-          <span class="emoji"><%= @hp.slice(i-4..i) %></span>
-        <% end %>
+        <span class="emoji"><%= @hp%></span>
       </div>
 
       <hr class='mt-1 mb-2'>
@@ -48,10 +44,11 @@
         < back
       </div>
     <% end %>
+    <p><%= @errors[:player][0] if @errors%></p>
     <%= form_for [@player, @battle] do |f| %>
-      <%= f.submit %>
+      <%= f.submit 'To battle' %>
     <% end %>
 
-    <%= link_to 'battle', creature_battles_path(@player, @battle) %>
+    <%# <%= link_to 'battle', creature_battles_path(@player, @battle) %>
   </div>
 </div>
