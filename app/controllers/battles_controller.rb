@@ -8,8 +8,8 @@ class BattlesController < ApplicationController
     if @battle.save
       redirect_to battle_path(@battle)
     else
-      @errors = @battle.errors
-      render "creatures/show"
+      @errors = @battle.errors[:player][0]
+      render "creatures/show", status: :unprocessable_entity
     end
   end
 

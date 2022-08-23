@@ -44,10 +44,14 @@
         < back
       </div>
     <% end %>
-    <p><%= @errors[:player][0] if @errors%></p>
-    <%= form_for [@player, @battle] do |f| %>
-      <%= f.submit 'To battle' %>
+    <% if @errors %>
+      <p><%= @errors%></p>
+    <% else %>
+      <%= form_for [@player, @battle] do |f| %>
+        <%= f.submit 'To battle' %>
+      <% end %>
     <% end %>
+
 
     <%# <%= link_to 'battle', creature_battles_path(@player, @battle) %>
   </div>
