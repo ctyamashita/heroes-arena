@@ -17,6 +17,8 @@ class BattlesController < ApplicationController
     @battle = Battle.find(params[:id])
     @player = @battle.player
     @enemy = @battle.enemy
+    @player_hp = hp_display(@player)
+    @enemy_hp = hp_display(@enemy)
   end
 
   def update
@@ -50,5 +52,11 @@ class BattlesController < ApplicationController
 
   def enemy_params
     params.require(:enemy).permit(:hp)
+  end
+
+  def hp_display(creature)
+    hp_lost = creature.max_hp - creature.hp
+    @hp = ('♥️' * creature.hp).chars
+    @hp = @hp.values_at(* @hp.each_index.select(&:even?)).join + ('🤍' * hp_lost)
   end
 end

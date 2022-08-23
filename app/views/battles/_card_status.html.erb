@@ -1,0 +1,21 @@
+<div class="pb-2 mb-3 show-battle">
+  <div class="d-flex align-items-center px-3 py-1" style="background-color: <%= creature.color %>; border-radius: 8px 8px 0 0">
+    <img src="<%= creature.class_img %>" alt="" class="icon-class me-2">
+    <h4 class='m-0'><strong><%= creature.name %></strong></h4>
+  </div>
+  <div class="d-flex justify-content-between px-3">
+    <p class='m-0'>HP: <%= creature.hp %>/<%= creature.max_hp %></p>
+    <p class='text-end m-0'><small>Lvl. <%= creature.lvl %></small></p>
+  </div>
+  <hr class='mt-0 mb-1'>
+  <div class='w-100 px-3 d-flex flex-wrap'>
+    <div class="hp-display">
+      <span class="emoji"><%= creature_hp.slice(..9) %></span>
+    </div>
+    <% (creature_hp.length / 10).times do |i|%>
+      <div class="hp-display">
+        <span class="emoji"><%= creature_hp.slice((10*i)..(9 + 10*i)) %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

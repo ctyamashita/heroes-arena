@@ -3,6 +3,8 @@
 <%= @enemy.name %>
 <%= @enemy.hp %>
 
+<%= render 'card_status', creature: @player, creature_hp: @player_hp %>
+<%= render 'card_status', creature: @enemy, creature_hp: @enemy_hp %>
 
 <%= simple_form_for @battle do |f| %>
     <div>

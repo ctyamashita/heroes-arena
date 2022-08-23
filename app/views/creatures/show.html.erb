@@ -8,8 +8,15 @@
       <p class='px-4 py-2 text-end m-0'><small><%= @player.hero_class %>  - Lvl. <%= @player.lvl %></small></p>
       <hr class='mt-1 mb-2'>
       <p class='m-0 px-3'>HP: <%= @player.hp %>/<%= @player.max_hp %></p>
-      <div class='w-100 px-3'>
-        <span class="emoji"><%= @hp%></span>
+      <div class='w-100 px-3 d-flex flex-wrap gap-2'>
+        <div class="hp-display">
+          <span class="emoji"><%= @hp.slice(..9) %></span>
+        </div>
+        <% (@hp.length / 10).times do |i|%>
+          <div class="hp-display">
+            <span class="emoji"><%= @hp.slice((10*i)..(9 + 10*i)) %></span>
+          </div>
+        <% end %>
       </div>
 
       <hr class='mt-1 mb-2'>
@@ -44,14 +51,13 @@
         < back
       </div>
     <% end %>
-    <% if @errors %>
-      <p><%= @errors%></p>
+    <% if @player.hp == 0 || @errors %>
+      <p><%= @errors %></p>
     <% else %>
       <%= form_for [@player, @battle] do |f| %>
-        <%= f.submit 'To battle' %>
+        <%= f.submit 'To Arena' %>
       <% end %>
     <% end %>
-
 
     <%# <%= link_to 'battle', creature_battles_path(@player, @battle) %>
   </div>

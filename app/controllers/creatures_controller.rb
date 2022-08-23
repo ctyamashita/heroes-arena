@@ -45,8 +45,8 @@ class CreaturesController < ApplicationController
 
   def hp_display
     hp_lost = @player.max_hp - @player.hp
-    @hp = ('♥️' * @player.hp).chars
-    @hp = @hp.values_at(* @hp.each_index.select(&:even?)).join + ('🤍' * hp_lost)
+    hp = ('♥️' * @player.hp).chars
+    hp.values_at(* hp.each_index.select(&:even?)).join + ('🤍' * hp_lost)
   end
 
   def exp_display
