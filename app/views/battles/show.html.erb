@@ -1,10 +1,12 @@
-<%= @player.name %>
-<%= @player.hp %>
-<%= @enemy.name %>
-<%= @enemy.hp %>
 
-<%= render 'card_status', creature: @player, creature_hp: @player_hp %>
-<%= render 'card_status', creature: @enemy, creature_hp: @enemy_hp %>
+<div class="d-flex flex-column justify-content-between col-12 col-sm-12 col-md-10 col-lg-8 col-lg-8 col-xl-6 battle-window">
+  <div class="d-flex justify-content-start">
+    <%= render 'card_status', creature: @enemy, creature_hp: @enemy_hp %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= render 'card_status', creature: @player, creature_hp: @player_hp %>
+  </div>
+</div>
 
 <%= simple_form_for @battle do |f| %>
     <div>
