@@ -1,10 +1,8 @@
 class BattlesController < ApplicationController
+  before_action :setting_battle, only: :create
+  before_action :battle_results, only: :update
+
   def create
-    @player = Creature.find(params[:creature_id])
-    @enemy = Creature.where.not(id: @player, hp: 0).sample
-    @battle = Battle.new
-    @battle.player = @player
-    @battle.enemy = @enemy
     if @battle.save
       redirect_to battle_path(@battle)
     else
@@ -22,22 +20,10 @@ class BattlesController < ApplicationController
   end
 
   def update
-    @battle = Battle.find(params[:id])
-    @player = @battle.player
-    @enemy = @battle.enemy
-    @player.hp -= player_params[:hp].to_i
-    @player.hp = 0 if @player.hp.negative?
-    @enemy.hp -= player_params[:hp].to_i
-    @enemy.hp = 0 if @enemy.hp.negative?
-
-    @victory = @player.hp.positive?
-    @victory = nil if @player.hp.positive? && @enemy.hp.positive?
-    @battle.victory = @victory
-
     @player.save
     @enemy.save
     @battle.save
-    if @player.hp == 0 || @enemy.hp == 0
+    if @player.hp.zero? || @enemy.hp.zero?
       redirect_to creature_path(@player)
     else
       redirect_to battle_path(@battle)
@@ -58,5 +44,27 @@ class BattlesController < ApplicationController
     hp_lost = creature.max_hp - creature.hp
     @hp = ('♥️' * creature.hp).chars
     @hp = @hp.values_at(* @hp.each_index.select(&:even?)).join + ('🤍' * hp_lost)
+  end
+
+  def setting_battle
+    @player = Creature.find(params[:creature_id])
+    @enemy = Creature.where.not(name: @player.name, hp: 0).sample
+    @battle = Battle.new
+    @battle.player = @player
+    @battle.enemy = @enemy
+  end
+
+  def battle_results
+    @battle = Battle.find(params[:id])
+    @player = @battle.player
+    @enemy = @battle.enemy
+    @player.hp -= player_params[:hp].to_i
+    @player.hp = 0 if @player.hp.negative?
+    @enemy.hp -= enemy_params[:hp].to_i
+    @enemy.hp = 0 if @enemy.hp.negative?
+
+    @victory = @player.hp.positive?
+    @victory = nil if @player.hp.positive? && @enemy.hp.positive?
+    @battle.victory = @victory
   end
 end

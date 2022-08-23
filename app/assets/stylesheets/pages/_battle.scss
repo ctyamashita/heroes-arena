@@ -1,4 +1,134 @@
 .battle-window {
   margin: 0 auto;
   height: 70vh;
+  position: relative;
 }
+
+.player-image {
+  z-index: -1;
+  height: 236px;
+  width: 236px;
+  object-fit: cover;
+  transform: translateY(40px);
+}
+
+.enemy-image {
+  z-index: -1;
+  height: 236px;
+  width: 236px;
+  object-fit: cover;
+  transform: scaleX(-1) translateY(-80px);
+}
+
+.show-battle {
+  background-color: #404040;
+  width: 236px;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba($color: #000000, $alpha: .3);
+  height: fit-content;
+}
+
+.hp-display {
+  width: 110px;
+  text-align: center;
+}
+
+.player-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.enemy-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.action-text {
+  position: relative;
+  border-radius: 50px;
+  text-align: center;
+  padding: 8px 0px;
+  background-color: white;
+  box-shadow: 0 0 8px rgba($color: #000000, $alpha: .3);
+
+  p {
+    width: 100%;
+    margin: 0;
+    text-align: start;
+    padding: 0 24px;
+  }
+
+  button {
+    border: none;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    transition: .3s;
+
+    &:focus {
+      width: auto;
+      transition: .3s;
+    }
+  }
+
+  &:hover .action-battle {
+    width: auto;
+    transition: .3s;
+  }
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .player-image {
+    z-index: -1;
+    height: 300px;
+    width: 300px;
+    transform: translateY(60px);
+  }
+
+  .enemy-image {
+    z-index: -1;
+    height: 300px;
+    width: 300px;
+    transform: scaleX(-1) translateY(-100px);
+  }
+
+  .show-battle {
+    flex-grow: 1;
+  }
+
+  .enemy-container {
+    align-items: flex-end;
+  }
+}
+
+// // Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) {
+//   .cards {
+//     grid-template-columns: 1fr;
+//   }
+// }
+
+// // Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr;
+//   }
+// }
+
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
+
+// // Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
