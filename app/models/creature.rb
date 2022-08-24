@@ -1,6 +1,8 @@
 class Creature < ApplicationRecord
+  has_many :battles, foreign_key: :player_id
   has_many :equipments, dependent: :destroy
   has_many :items, through: :equipments
+  has_many :enemies, through: :battles
 
   CLASSES = ['Necromancer', 'Warrior', 'Beastmaster', 'Ninja', 'Mage', 'Cleric', 'Ranger', 'Bard', 'Monk']
   ICONS = { 'Necromancer' => '💀',

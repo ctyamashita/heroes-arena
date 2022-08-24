@@ -86,14 +86,13 @@
     z-index: -1;
     height: 300px;
     width: 300px;
-    transform: translateY(60px);
   }
 
   .enemy-image {
     z-index: -1;
-    height: 300px;
-    width: 300px;
-    transform: scaleX(-1) translateY(-100px);
+    height: 200px;
+    width: 200px;
+    transform: scaleX(-1) translateY(-65px);
   }
 
   .show-battle {

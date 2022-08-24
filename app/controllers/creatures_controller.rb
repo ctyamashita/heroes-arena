@@ -33,6 +33,8 @@ class CreaturesController < ApplicationController
 
   def destroy
     @creature = Creature.find(params[:id])
+    @battles = Battle.where(player: @creature) + Battle.where(enemy: @creature)
+    @battles.each(&:destroy)
     @creature.destroy
     redirect_to creatures_path
   end
