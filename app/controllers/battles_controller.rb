@@ -23,6 +23,9 @@ class BattlesController < ApplicationController
     @battle = Battle.find(params[:id])
     @player = @battle.player
     @enemy = @battle.enemy
+    @victory = @player.hp.positive?
+    @victory = nil if @player.hp.positive? && @enemy.hp.positive?
+    @battle.victory = @victory
     @battle.save
     if @player.hp.zero? || @enemy.hp.zero?
       @player.battle_count += 1
@@ -61,9 +64,7 @@ class BattlesController < ApplicationController
     @player.hp = 0 if @player.hp.negative?
     @enemy.hp = 0 if @enemy.hp.negative?
 
-    @victory = @player.hp.positive?
-    @victory = nil if @player.hp.positive? && @enemy.hp.positive?
-    @battle.victory = @victory
+
   end
 
   def creature_action(player, enemy)
