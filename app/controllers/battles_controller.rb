@@ -20,22 +20,15 @@ class BattlesController < ApplicationController
   end
 
   def update
-    @battle = Battle.find(params[:id])
-    @player = @battle.player
-    @enemy = @battle.enemy
-    @victory = @player.hp.positive?
-    @victory = nil if @player.hp.positive? && @enemy.hp.positive?
-    @battle.victory = @victory
-    @battle.save
     if @player.hp.zero? || @enemy.hp.zero?
-      @player.battle_count += 1
+      @player.battles_count += 1
+      @player.victories += 1 if @player.hp.positive?
       @player.save
       redirect_to creature_path(@player)
     else
-      @player_damage = creature_action(@player, @enemy)
-      @enemy_damage = attack_dmg(@enemy, @player)
-      @player.save
-      @enemy.save
+      damages = turn_battle(@player, @enemy)
+      @player_damage = damages[:player]
+      @enemy_damage = damages[:enemy]
       redirect_to battle_path(@battle)
     end
   end
@@ -61,10 +54,13 @@ class BattlesController < ApplicationController
   end
 
   def battle_results
-    @player.hp = 0 if @player.hp.negative?
-    @enemy.hp = 0 if @enemy.hp.negative?
-
-
+    @battle = Battle.find(params[:id])
+    @player = @battle.player
+    @enemy = @battle.enemy
+    @victory = @player.hp.positive?
+    @victory = nil if @player.hp.positive? && @enemy.hp.positive?
+    @battle.victory = @victory
+    @battle.save
   end
 
   def creature_action(player, enemy)
@@ -76,14 +72,26 @@ class BattlesController < ApplicationController
     end
   end
 
-  def attack_dmg(player, target)
-    if (player.dex - target.spd).positive?
-      damage = target.def - player.atk
+  def attack_dmg(attacker, defender)
+    if (attacker.dex - (defender.spd / 3)).positive?
+      damage = attacker.atk - defender.def
       damage = 1 unless damage.positive?
-      damage *= 5 if (player.luk) >= rand(100)
+      damage *= 5 if (attacker.luk) >= rand(100)
     else
       damage = 0
     end
     damage
+  end
+
+  def turn_battle(player, opponent)
+    player_damage = creature_action(player, opponent)
+    opponent_damage = attack_dmg(opponent, player)
+    opponent.hp -= player_damage
+    player.hp -= opponent_damage if opponent.hp.positive?
+    player.hp = 0 if player.hp.negative?
+    opponent.hp = 0 if opponent.hp.negative?
+    player.save
+    opponent.save
+    { player: player_damage, enemy: opponent_damage }
   end
 end

@@ -53,6 +53,7 @@
 
 .paper-card {
   min-height: 130px;
+  width: auto;
   background-color: rgb(231, 210, 185);
   border: 2px solid rgb(140, 131, 119);
   border-radius: 6px;
@@ -63,4 +64,10 @@
     box-shadow: 0 4px 0 rgb(140, 131, 119);
     transition: .3s;
   }
+}
+
+.dead {
+  filter: grayscale(70%);
+  opacity: .6;
+  // filter: hue-rotate(-45deg);
 }

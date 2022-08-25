@@ -21,7 +21,6 @@
           <% end %>
         <% end %>
       </div>
-
       <hr class='mt-1 mb-2'>
       <p class='m-0 px-3'>exp: <%= @player.exp %>/100</p>
       <span class="emoji px-3"><%= @exp %></span>
@@ -37,7 +36,6 @@
           <p class='m-0 px-2 py-1'><span class="emoji">🧘</span> INT</p>
           <p class='m-0 px-2 py-1'><span class="emoji">🎲</span> LUK</p>
         </div>
-
         <div class="text-center stats-display m-0">
           <p class='m-0 px-2 py-1'>_</p>
           <p class='m-0 px-2 py-1'><%= @player.atk %></p>
@@ -53,15 +51,16 @@
       <div class='stat-btn-lg mb-3 w-50'>
         < back
       </div>
-    <% end %>
-    <% if @player.hp == 0 || @errors %>
-      <p><%= @errors %></p>
-    <% else %>
-      <%= form_for [@player, @battle] do |f| %>
-        <%= f.submit 'To Arena' %>
-      <% end %>
-    <% end %>
-
-    <%# <%= link_to 'battle', creature_battles_path(@player, @battle) %>
-  </div>
-</div>
+        <% end %>
+        <% if @player.hp == 0 || @errors %>
+          <p><%= @errors %></p>
+        <% elsif @current_battle %>
+          <%= link_to 'Continue Duel', battle_path(@current_battle), class: 'stat-btn-lg'  %>
+        <% else %>
+          <%= form_for [@player, Battle.new] do |f| %>
+            <%= f.submit 'New Duel', class: 'stat-btn-lg' %>
+          <% end %>
+        <% end %>
+        <%# <%= link_to 'battle', creature_battles_path(@player, @battle) %>
+      </div>
+    </div>

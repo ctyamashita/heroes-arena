@@ -1,4 +1,3 @@
-
 <div class="d-flex flex-column justify-content-between col-11 col-sm-10 col-md-8 col-lg-6 col-xl-6 battle-window">
   <div class="enemy-container">
     <%= render 'card_status', creature: @enemy, creature_hp: @enemy_hp %>
@@ -10,10 +9,13 @@
   <div class="player-container gap-2">
     <%= render 'card_status', creature: @player, creature_hp: @player_hp %>
     <div class="d-flex flex-column flex-grow-1 justify-content-center gap-2">
-      <div class="d-flex align-items-center action-text">
-        <button class="stat-btn-lg action-battle" onclick="alert('pressed')">Attack</button>
-        <p><span class="emoji">🗡️</span>10 | <span class="emoji">🎯</span>90% | <span class="emoji">💥</span>5%</p>
-      </div>
+      <%= form_for(@battle) do |f| %>
+        <div class="d-flex align-items-center action-text">
+          <button class="stat-btn-lg action-battle">Attack</button>
+          <input type="text" name="player[action]" value= 'attack' class="d-none">
+          <p><span class="emoji">🗡️</span>10 | <span class="emoji">🎯</span>90% | <span class="emoji">💥</span>5%</p>
+        </div>
+      <% end %>
       <div class="d-flex align-items-center action-text">
         <button class="stat-btn-lg action-battle">Special</button>
         <p>Restore HP</p>
@@ -21,14 +23,3 @@
     </div>
   </div>
 </div>
-<%= simple_form_for @battle do |f| %>
-    <div>
-      <label for="player[hp]">Player</label>
-      <input type="number" name="player[hp]">
-    </div>
-    <div>
-      <label for="enemy[hp]">Enemy</label>
-      <input type="number" name="enemy[hp]">
-    </div>
-    <%= f.submit %>
-<% end %>

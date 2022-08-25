@@ -14,7 +14,7 @@ class CreaturesController < ApplicationController
     @player = Creature.find(params[:id])
     @hp = hp_display
     @exp = exp_display
-    @battle = Battle.new
+    @current_battle = @player.battles.where(victory: nil).first
   end
 
   def new

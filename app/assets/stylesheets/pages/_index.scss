@@ -12,3 +12,45 @@
   background: rgb(140, 131, 119);
   margin: 0;
 }
+
+
+.paper-card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .paper-card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .paper-card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .paper-card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .paper-card-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .paper-card-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
