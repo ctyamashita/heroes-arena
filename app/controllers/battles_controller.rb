@@ -85,7 +85,7 @@ class BattlesController < ApplicationController
     hit_chance = 0 if hit_chance.negative?
     crit = (attacker.luk) >= rand(100)
     if hit_chance >= rand(100)
-      damage = attacker.atk - defender.def
+      damage = attacker.atk - (defender.def / 3)
       damage = 1 unless damage.positive?
       damage *= 5 if crit
     else
