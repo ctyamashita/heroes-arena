@@ -4,17 +4,17 @@
     <h4 class='m-0'><strong><%= creature.name %></strong></h4>
   </div>
   <div class='w-100 px-2 py-1 d-flex flex-wrap'>
-     <% if creature_hp.length == 5 %>
+    <% if creature_hp.length == 5 %>
+      <div class="hp-display">
+        <span class="emoji"><%= creature_hp %></span>
+      </div>
+    <% else %>
+      <% (creature_hp.length / 5).times do |i|%>
         <div class="hp-display">
-              <span class="emoji"><%= creature_hp %></span>
-            </div>
-        <% else %>
-          <% (creature_hp.length / 5).times do |i|%>
-            <div class="hp-display">
-              <span class="emoji"><%= creature_hp.slice((5*i)..(4 + 5*i)) %></span>
-            </div>
-          <% end %>
-        <% end %>
+          <span class="emoji"><%= creature_hp.slice((5*i)..(4 + 5*i)) %></span>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <hr class='mt-0 mb-1'>
   <div class="d-flex justify-content-between px-3">

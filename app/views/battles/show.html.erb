@@ -1,8 +1,11 @@
-<div class="d-flex flex-column justify-content-between col-11 col-sm-10 col-md-8 col-lg-6 col-xl-6 battle-window">
+<div class="d-flex flex-column justify-content-between col-11 col-sm-10 col-md-10 col-lg-8 col-xl-7 battle-window">
   <div class="enemy-container">
     <%= render 'card_status', creature: @enemy, creature_hp: @enemy_hp %>
   </div>
-  <div class="d-flex justify-content-between">
+  <div class="battle-canvas <%= @animation %>">
+    <p class="player-display-dmg"><%= params[:e_dmg] == '0' ? 'Miss' : "-#{params[:e_dmg]}"%></p>
+    <p class="enemy-display-dmg"><%= params[:p_dmg] == '0' ? 'Miss' : "-#{params[:p_dmg]}"%></p>
+    <div class="floor-arena"></div>
     <div class="player-image" style="background: url('<%= @player.default_image %>'); background-size: contain; background-repeat: no-repeat; background-position: left"></div>
     <div class="enemy-image" style="background: url('<%= @enemy.default_image %>'); background-size: contain; background-repeat: no-repeat; background-position: left"></div>
   </div>
@@ -12,8 +15,8 @@
       <%= form_for(@battle) do |f| %>
         <div class="d-flex align-items-center action-text">
           <button class="stat-btn-lg action-battle">Attack</button>
-          <input type="text" name="player[action]" value= 'attack' class="d-none">
-          <p><span class="emoji">🗡️</span>10 | <span class="emoji">🎯</span>90% | <span class="emoji">💥</span>5%</p>
+          <input type="text" name="player[act]" value= 'atk' class="d-none">
+          <p><span class="emoji">🗡️</span><%= @dmg %> | <span class="emoji">🎯</span><%= @hit %>% | <span class="emoji">💥</span><%= @crit.round %>%</p>
         </div>
       <% end %>
       <div class="d-flex align-items-center action-text">
