@@ -23,6 +23,7 @@ class BattlesController < ApplicationController
     @crit = chances[:crit]
     @dmg = chances[:dmg_chance]
     @animation = 'atk-player' if @enemy.hp.zero?
+    # redirect_to creature_path(@player) if @player.hp.zero? || @enemy.hp.zero?
   end
 
   def update
