@@ -81,8 +81,9 @@ class BattlesController < ApplicationController
 
   def calculate_atk_dmg(attacker, defender)
     diff = attacker.dex - defender.spd
-    diff = 3 if diff.positive?
-    hit_chance = 90 + (10 * (diff / 3))
+    diff = 1 if diff.positive?
+    diff = -8.5 if diff < -9
+    hit_chance = 90 + (10 * diff)
     hit_chance = 0 if hit_chance.negative?
     crit = (attacker.luk) >= rand(100)
     if hit_chance >= rand(100)
@@ -92,7 +93,7 @@ class BattlesController < ApplicationController
     else
       damage = 0
     end
-    dmg_chance = (attacker.atk - defender.def).positive? ? attacker.atk - defender.def : 1
+    dmg_chance = (attacker.atk - (defender.def / 3)).positive? ? attacker.atk - (defender.def / 3) : 1
     { dmg: damage, dmg_chance: dmg_chance, hit: hit_chance, crit: attacker.luk.fdiv(100) * 100 }
   end
 
