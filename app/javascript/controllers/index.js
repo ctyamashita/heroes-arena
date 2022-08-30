@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import StatPointsController from "./stat_points_controller"
 application.register("stat-points", StatPointsController)
+
+import BattleMsgController from "./battle_msg_controller"
+application.register("battle-msg", BattleMsgController)
