@@ -70,6 +70,14 @@ class Creature < ApplicationRecord
     end
   end
 
+  def banner
+    case hero_class
+    when hero_class then "/assets/#{hero_class.downcase}-banner.png"
+    else
+      ''
+    end
+  end
+
   def color
     case hero_class
     when hero_class then COLORS[hero_class]

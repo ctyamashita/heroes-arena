@@ -111,14 +111,14 @@
   0%   { left: 10px;}
   5%  { left: 40px;}
   50%  { left: 10px;}
-  75% { left: -40px;}
+  75% { left: -20px;}
   100% { left: 10px;}
 }
 
 // enemy attack and miss
 @keyframes enemy-attack {
   0%   { right: 0;}
-  25%   { right: -10px;}
+  25%   { right: -30px;}
   50%  { right: 0;}
   55%  { right: 30px;}
   100% { right: 0;}
@@ -294,6 +294,16 @@
   width: 62vh;
   height: 62vh;
   transform: translate(50%, -50%) scaleX(4.5) skew(-12deg, 7deg);
+}
+
+.turn-counter {
+  position: absolute;
+  left: 12px;
+  font-weight: 700;
+  border: 2px solid #404040;
+  color: #404040;
+  padding: 1px 14px;
+  border-radius: 39px;
 }
 
 // Smallest device

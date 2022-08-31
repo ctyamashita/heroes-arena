@@ -1,14 +1,13 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h5 class="text-center" id="staticBackdropLabel"><%= player.hp > 0 ? 'You Won' : 'You Lose' %></h5>
-      </div>
-      <div class="modal-footer">
-      <button class="stat-btn-modal">Back</button>
+  <div class="modal-dialog modal-dialog-centered modal-banner-width">
+    <div class="modal-content-cty">
+      <div class="modal-body-cty">
+        <img src="<%= player.hp > 0 ? player.banner : enemy.banner %>" alt="banner" class="modal-banner">
+        <h5 class='modal-message' id="staticBackdropLabel"><strong><%= player.hp > 0 ? 'Victory!' : 'Game Over' %></strong></h5>
+        <div class="modal-btn-position">
+          <button class="stat-btn-modal"><i class="fa-solid fa-house"></i></button>
+          <p class="stat-btn-modal" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></p>
+        </div>
       </div>
     </div>
   </div>

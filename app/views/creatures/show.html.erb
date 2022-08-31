@@ -1,13 +1,19 @@
 <div class="bg-show">
   <div class="container col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 h-100 d-flex justify-content-between flex-column">
-    <div class="py-3 mb-3 show-title">
+    <div class="pb-2 pt-3 mb-3 show-title">
       <div class="d-flex align-items-center px-3 py-2" style="background-color: <%= @player.color %>">
         <img src="<%= @player.class_img %>" alt="" class="icon-class-lg me-3">
-        <h1 class='m-0'><strong><%= @player.name %></strong></h1>
+        <h1 class='m-0 hero-name'><strong><%= @player.name %></strong></h1>
       </div>
-      <p class='px-4 py-2 text-end m-0'><small><%= @player.hero_class %>  - Lvl. <%= @player.lvl %></small></p>
-      <hr class='mt-1 mb-2'>
-      <p class='m-0 px-3'>HP: <%= @player.hp %>/<%= @player.max_hp %></p>
+        <p class='px-3 text-end m-0'><small><%= @player.hero_class %>  - Lvl. <%= @player.lvl %></small></p>
+      <hr class='mt-2 mb-1'>
+      <div class="d-flex justify-content-between">
+        <p class='m-0 px-3'>HP: <%= @player.hp %>/<%= @player.max_hp %></p>
+        <div class="px-3 card-count">
+          <small><i class="fa-solid fa-hand-fist"></i> <%= @player.battles.length %></small> |
+          <small><i class="fa-solid fa-trophy"></i> <%= @player.victories %></small>
+        </div>
+      </div>
       <div class='w-100 px-3 d-flex flex-wrap'>
         <% if @hp.length == 5 %>
           <div class="hp-display">
@@ -21,9 +27,11 @@
           <% end %>
         <% end %>
       </div>
-      <hr class='mt-1 mb-2'>
-      <p class='m-0 px-3'>exp: <%= @player.exp %>/100</p>
-      <span class="emoji px-3"><%= @exp %></span>
+      <hr class='mt-2 mb-1'>
+      <div>
+        <p class='m-0 px-3'>exp: <%= @player.exp %>/100</p>
+        <span class="emoji ps-3"><%= @exp %></span>
+      </div>
     </div>
     <div style="background: url('<%= @player.default_image %>'); height: 500px; background-size: contain; background-repeat: no-repeat; background-position: right">
       <div class="d-flex justify-content-start stats-display-container">

@@ -9,6 +9,9 @@
     <div class="floor-arena"></div>
     <div class="player-image" style="background: url('<%= @player.default_image %>'); background-size: contain; background-repeat: no-repeat; background-position: left"></div>
     <div class="enemy-image" style="background: url('<%= @enemy.default_image %>'); background-size: contain; background-repeat: no-repeat; background-position: left"></div>
+    <div class="turn-counter">
+    <small>Turn <%= @battle.turn %></small>
+    </div>
   </div>
   <div class="player-container gap-2">
     <%= render 'card_status', creature: @player, creature_hp: @player.hp_display %>
@@ -20,7 +23,7 @@
           <input type="text" name="player[act]" value= 'atk' class="d-none">
           <p><span class="emoji">🗡️</span><%= @dmg %> | <span class="emoji">🎯</span><%= @hit %>% | <span class="emoji">💥</span><%= @crit.round %>%</p>
         </div>
-        <%= render 'modal', player: @player %>
+        <%= render 'modal', player: @player, enemy: @enemy %>
       <% end %>
       <div class="d-flex align-items-center action-text">
         <button class="stat-btn-lg action-battle">Special</button>

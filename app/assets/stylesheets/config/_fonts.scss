@@ -3,9 +3,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji&family=Noto+Sans+Mono&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');
+
 // Define fonts for body and headers
 $body-font: 'Noto Sans Mono', monospace;
-$headers-font: "Work Sans", "sans-serif";
+// $headers-font: "Work Sans", "sans-serif";
+$headers-font: 'M PLUS Rounded 1c', sans-serif;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
