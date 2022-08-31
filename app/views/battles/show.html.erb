@@ -1,6 +1,6 @@
 <div class="d-flex flex-column justify-content-between col-11 col-sm-10 col-md-10 col-lg-8 col-xl-7 battle-window" data-controller='battle-msg'>
   <div class="enemy-container">
-    <%= render 'card_status', creature: @enemy, creature_hp: @enemy_hp %>
+    <%= render 'card_status', creature: @enemy, creature_hp: @enemy.hp_display %>
     <p class='d-none' data-battle-msg-target='enemyHp'><%= @enemy.hp %></p>
   </div>
   <div class="battle-canvas <%= @animation %>">
@@ -11,7 +11,7 @@
     <div class="enemy-image" style="background: url('<%= @enemy.default_image %>'); background-size: contain; background-repeat: no-repeat; background-position: left"></div>
   </div>
   <div class="player-container gap-2">
-    <%= render 'card_status', creature: @player, creature_hp: @player_hp %>
+    <%= render 'card_status', creature: @player, creature_hp: @player.hp_display %>
     <p class='d-none' data-battle-msg-target='playerHp'><%= @player.hp %></p>
     <div class="d-flex flex-column flex-grow-1 justify-content-center gap-2">
       <%= form_for(@battle) do |f| %>

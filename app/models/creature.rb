@@ -34,6 +34,12 @@ class Creature < ApplicationRecord
     errors.add(:hero_class, "You need to spend all your points.") if points_added != 30
   end
 
+  def hp_display
+    hp_lost = self.max_hp - self.hp
+    hp = ('♥️' * self.hp).chars
+    hp.values_at(* hp.each_index.select(&:even?)).join + ('🤍' * hp_lost)
+  end
+
   def set_hp
     self.hp = (self.def / 3) * 5
     self.hp = 5 if self.def < 3
@@ -70,5 +76,42 @@ class Creature < ApplicationRecord
     else
       ''
     end
+  end
+
+  def action(target, action)
+    case action
+    when 'atk' then calculate_atk_dmg(target)
+    # when 'skill' then skill_dmg(self, target)
+    else
+      'Invalid action.'
+    end
+  end
+
+  def calculate_atk_dmg(defender)
+    hit_chance = accuracy(defender)
+    if hit_chance >= rand(100)
+      damage = on_hit_damage(defender)
+    else
+      damage = 0
+    end
+    dmg_chance = (self.atk - (defender.def / 3)).positive? ? self.atk - (defender.def / 3) : 1
+    { dmg: damage, dmg_chance: dmg_chance, hit: hit_chance, crit: self.luk.fdiv(100) * 100 }
+  end
+
+  def on_hit_damage(defender)
+    crit = (self.luk) >= rand(100)
+    damage = self.atk - (defender.def / 3)
+    damage = 1 unless damage.positive?
+    damage *= 5 if crit
+    damage
+  end
+
+  def accuracy(defender)
+    diff = self.dex - defender.spd
+    diff = 1 if diff.positive?
+    diff = -8.5 if diff < -9
+    hit_chance = 90 + (10 * diff)
+    hit_chance = 0 if hit_chance.negative?
+    hit_chance
   end
 end
