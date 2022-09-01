@@ -3,9 +3,9 @@ class CreaturesController < ApplicationController
     @creature = Creature.new
     if params[:class]
       @class = params[:class]
-      @creatures = Creature.where(hero_class: params[:class])
+      @creatures = current_user.creatures.where(hero_class: params[:class])
     else
-      @creatures = Creature.all
+      @creatures = current_user.creatures
     end
     render :index
   end
@@ -23,6 +23,7 @@ class CreaturesController < ApplicationController
 
   def create
     @creature = Creature.new(creature_params)
+    @creature.user_id = current_user.id
     @creature.set_hp
     if @creature.save
       redirect_to creature_path(@creature)
