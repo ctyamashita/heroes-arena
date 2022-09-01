@@ -70,7 +70,7 @@ class BattlesController < ApplicationController
   end
 
   def find_enemy(player)
-    Creature.all.length.times do
+    Creature.count.times do
       enemies = Creature.where.not(hp: 0).reject do |creature|
         creature == player || creature.user == current_user
       end
