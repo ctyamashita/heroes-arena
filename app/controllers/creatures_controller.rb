@@ -1,6 +1,7 @@
 class CreaturesController < ApplicationController
   def index
     @creature = Creature.new
+
     if params[:class]
       @class = params[:class]
       @creatures = current_user.creatures.where(hero_class: params[:class])
