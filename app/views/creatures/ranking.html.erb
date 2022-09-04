@@ -1,0 +1,13 @@
+<div class="container">
+<h1 class="text-center my-4">Ranking</h1>
+<div class='col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 col m-auto'>
+  <% @creatures.each_with_index do |creature, index|%>
+    <%= link_to creature_path(creature) do  %>
+    <div class="stat-btn mb-1 d-flex justify-content-between p-3">
+        <small><%= "#{index + 1}. #{creature.name} - lvl. #{creature.lvl}" %></small>
+        <small><%= creature.victories %> <i class="fa-solid fa-trophy"></i></small>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+</div>

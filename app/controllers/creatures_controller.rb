@@ -41,6 +41,10 @@ class CreaturesController < ApplicationController
     redirect_to creatures_path
   end
 
+  def ranking
+    @creatures = Creature.order('victories DESC').first(10)
+  end
+
   private
 
   def creature_params

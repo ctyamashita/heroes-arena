@@ -41,7 +41,7 @@
           <p class='m-0 px-2 py-1'><span class="emoji">🛡️</span> DEF</p>
           <p class='m-0 px-2 py-1'><span class="emoji">🏃</span> SPD</p>
           <p class='m-0 px-2 py-1'><span class="emoji">🎯</span> DEX</p>
-          <p class='m-0 px-2 py-1'><span class="emoji">🧘</span> INT</p>
+          <p class='m-0 px-2 py-1'><span class="emoji">🔮</span> INT</p>
           <p class='m-0 px-2 py-1'><span class="emoji">🎲</span> LUK</p>
         </div>
         <div class="text-center stats-display m-0">
@@ -55,17 +55,16 @@
         </div>
       </div>
     </div>
-    <div class="d-flex">
-      <div class="flex-grow-1">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="">
         <%= link_to creatures_path do %>
-          <div class='stat-btn-lg mb-3'>
+          <div class='stat-btn-lg'>
             <i class="fa-solid fa-caret-left"></i> back
           </div>
         <% end %>
       </div>
-      <% if @player.hp == 0 || @errors %>
-        <p><%= @errors %></p>
-      <% elsif @current_battle %>
+      <small><%= @player.user.email %></small>
+      <% if @current_battle %>
         <%= link_to 'Continue Duel', battle_path(@current_battle), class: 'stat-btn-lg mb-3'  %>
       <% else %>
         <%= form_for [@player, Battle.new] do |f| %>
