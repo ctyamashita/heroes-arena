@@ -3,6 +3,7 @@ class Creature < ApplicationRecord
   has_many :equipments, dependent: :destroy
   has_many :items, through: :equipments
   has_many :enemies, through: :battles
+  belongs_to :user
 
   CLASSES = ['Necromancer', 'Warrior', 'Beastmaster', 'Ninja', 'Mage', 'Cleric', 'Ranger', 'Bard', 'Monk']
   ICONS = { 'Necromancer' => '💀',

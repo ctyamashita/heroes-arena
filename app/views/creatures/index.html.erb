@@ -8,7 +8,7 @@
         <%= link_to new_creature_path, class: 'stat-btn-lg mb-3 w-100' do %>
           <span class='emoji'>➕</span> New hero
         <% end %>
-        <form action="/creatures" method='get' data-controller="class-filter" data-class-filter-target="form">
+        <form action="/creatures" method='get' data-controller="class-filter" data-class-filter-target="form" remote>
           <select name="class" id="class" form="class" class='form-select select-class' data-action="change->class-filter#checkClass" data-class-filter-target="inputSelect">
             <option value="">All</option>
             <% Creature::CLASSES.sort.each do |hero_class| %>
@@ -30,7 +30,7 @@
           </div>
           <hr>
           <div class="d-flex justify-content-between">
-            <%= link_to "🔍", creature_path(creature), class: 'stat-btn emoji mb-3' %>
+            <%= link_to creature.hp == 0 ? '🪦' : "🔍", creature_path(creature), class: 'stat-btn emoji mb-3' %>
             <%= link_to "🗑️", creature_path(creature), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to send #{creature.name} home?"}, class: 'stat-btn emoji mb-3' %>
           </div>
         </div>

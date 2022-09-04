@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  root to: 'creatures#index'
+  devise_for :users
+  root to: 'users#dashboard'
   resources :creatures, only: %i[index show new create destroy] do
     # resources :equipments, only: %i[new create]
     resources :battles, only: :create
+    collection do
+      get 'ranking'
+    end
   end
   resources :battles, only: %i[show update]
   # resources :equipments, only: [:destroy]
+  get '/dashboard', to: 'users#dashboard', as: :dashboard
 
   # get '/guild', to: 'creatures#index', as: :guild
   # get '/hero/:id', to: 'creatures#show', as: :hero
